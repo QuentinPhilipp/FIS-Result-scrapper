@@ -20,6 +20,7 @@ class Competition(object):
         self.ref = ref
         self.id = ref.get_attribute("id")
         self.setDate(ref)
+        self.events = []
 
 
     def setDate(self,ref):
@@ -59,15 +60,16 @@ class Competition(object):
             data=json.load(f)
             month = data["month"][monthStr]
 
-        print("Date : ",startDay,endDay,month,year)
-
         self.startDate = datetime.date(int(year),int(month),int(startDay))
         self.endDate = datetime.date(int(year),int(month),int(endDay))
 
 
     def __repr__(self):
-        return "Competition "+str(self.id)+ "->" +str(self.startDate.day)+ "-" + str(self.endDate.day) +" "+str(self.endDate.month)+" "+str(self.endDate.year)
-
+        dispString = "Competition "+str(self.id)+ " -> " +str(self.startDate.day)+ "-" + str(self.endDate.day) +" "+self.startDate.strftime("%b %Y")
+        
+        for event in self.events:    
+            dispString += "\n  ~ " + str(event)
+        return dispString
 
 
 if __name__ == "__main__":
