@@ -33,7 +33,7 @@ class Event(object):
         if not self.cancelled:
             self.date = self.getDate(ref)
             self.category = ref.find_element_by_xpath("./div/div[1]/div/a[3]/div/div/div/div").get_attribute("innerHTML").strip()
-
+            self.resultsHREF = ref.find_element_by_xpath("./div/div[1]/div/a[1]").get_attribute("href")
 
     def getDate(self,ref):
         eventDateRaw = ref.find_element_by_xpath("./div/div[1]/div/a[2]/div/div/div").get_attribute("innerHTML")
@@ -49,10 +49,10 @@ class Event(object):
         if self.cancelled:
             return "Cancelled"
         else:
-            return self.category+" : "+str(self.date)
+            return self.category+" : "+str(self.date)+ " -> "+self.resultsHREF
 
     def __str__(self):
         if self.cancelled:
             return "Cancelled"
         else:
-            return self.category+" : "+str(self.date)
+            return self.category+" : "+str(self.date)+ " -> "+self.resultsHREF
