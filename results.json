@@ -1,0 +1,84 @@
+[
+  {
+    "id": "46935",
+    "startDate": { "year": 2020, "month": 10, "day": 17, "hour": 0, "min": 0 },
+    "endDate": { "year": 2020, "month": 10, "day": 18, "hour": 0, "min": 0 },
+    "events": [
+      {
+        "cancelled": false,
+        "category": "Giant Slalom",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104272",
+        "date": { "year": 2020, "month": 10, "day": 17, "hour": 10, "min": 0 }
+      },
+      {
+        "cancelled": false,
+        "category": "Giant Slalom",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104273",
+        "date": { "year": 2020, "month": 10, "day": 18, "hour": 10, "min": 0 }
+      }
+    ]
+  },
+  {
+    "id": "46937",
+    "startDate": { "year": 2020, "month": 11, "day": 21, "hour": 0, "min": 0 },
+    "endDate": { "year": 2020, "month": 11, "day": 22, "hour": 0, "min": 0 },
+    "events": [
+      {
+        "cancelled": false,
+        "category": "Slalom",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104277",
+        "date": { "year": 2020, "month": 11, "day": 21, "hour": 10, "min": 15 }
+      },
+      {
+        "cancelled": false,
+        "category": "Slalom",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104278",
+        "date": { "year": 2020, "month": 11, "day": 22, "hour": 10, "min": 15 }
+      }
+    ]
+  },
+  {
+    "id": "46936",
+    "startDate": { "year": 2020, "month": 11, "day": 26, "hour": 0, "min": 0 },
+    "endDate": { "year": 2020, "month": 11, "day": 27, "hour": 0, "min": 0 },
+    "events": [
+      {
+        "cancelled": false,
+        "category": "Parallel",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104372",
+        "date": { "year": 2020, "month": 11, "day": 26, "hour": 10, "min": 0 }
+      },
+      {
+        "cancelled": false,
+        "category": "Parallel",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104275",
+        "date": { "year": 2020, "month": 11, "day": 26, "hour": 17, "min": 45 }
+      },
+      {
+        "cancelled": false,
+        "category": "Parallel",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104371",
+        "date": { "year": 2020, "month": 11, "day": 27, "hour": 10, "min": 0 }
+      },
+      {
+        "cancelled": false,
+        "category": "Parallel",
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104274",
+        "date": { "year": 2020, "month": 11, "day": 27, "hour": 17, "min": 50 }
+      }
+    ]
+  },
+  {
+    "id": "46965",
+    "startDate": { "year": 2020, "month": 12, "day": 5, "hour": 0, "min": 0 },
+    "endDate": { "year": 2020, "month": 12, "day": 6, "hour": 0, "min": 0 },
+    "events": [
+      {
+        "cancelled": true,
+        "category": null,
+        "resultsHREF": null,
+        "date": { "year": 1970, "month": 1, "day": 1, "hour": 0, "min": 0 }
+      }
+    ]
+  }
+]

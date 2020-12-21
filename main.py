@@ -3,6 +3,7 @@ from event import Event
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
+import json
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
@@ -42,7 +43,20 @@ for competition in competitionList:
 
 print("\nCompetition list:")
 
+dictCompetitionList = []
 for competition in competitionList :
-    print(competition)
+    # Convert nested objects into a dictionnary for storage system
+    dictCompetitionList.append(competition.customDict())
+
+
+with open("results.json","w") as f:
+    print(dictCompetitionList)
+    f.write(json.dumps(dictCompetitionList))
+
+
 
 # print("Number of competitions:",len(elems))
+
+
+# jsonStr = json.dumps(competitionList[0].__dict__)
+# print(jsonStr)

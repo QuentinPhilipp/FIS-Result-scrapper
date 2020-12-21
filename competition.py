@@ -3,6 +3,9 @@ from selenium.webdriver.chrome.options import Options
 import datetime
 import re
 import json
+import copy
+from eventDate import EventDate
+
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
@@ -65,11 +68,42 @@ class Competition(object):
 
 
     def __repr__(self):
+        objDict = copy.copy(self).__dict__
+
+        del objDict["ref"]
+        del objDict["startDate"]
+        del objDict["endDate"]
+
+        objDict['startDate'] = EventDate(self.startDate.year,self.startDate.month,self.startDate.day).__dict__
+        objDict['endDate'] = EventDate(self.endDate.year,self.endDate.month,self.endDate.day).__dict__
+
+        return json.dumps(objDict)
+
+    def __str__(self):
         dispString = "Competition "+str(self.id)+ " -> " +str(self.startDate.day)+ "-" + str(self.endDate.day) +" "+self.startDate.strftime("%b %Y")
         
         for event in self.events:    
             dispString += "\n  ~ " + str(event)
         return dispString
+
+
+    def customDict(self):
+        """
+        Return a dict with nested events
+        """
+        objDict = copy.copy(self).__dict__
+
+        del objDict["ref"]
+        del objDict["startDate"]
+        del objDict["endDate"]
+        del objDict["events"]
+
+        objDict['startDate'] = EventDate(self.startDate.year,self.startDate.month,self.startDate.day).__dict__
+        objDict['endDate'] = EventDate(self.endDate.year,self.endDate.month,self.endDate.day).__dict__
+        objDict["events"] = []
+        for event in self.events:
+            objDict["events"].append(event.customDict())
+        return objDict
 
 
 if __name__ == "__main__":
