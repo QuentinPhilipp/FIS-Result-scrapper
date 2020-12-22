@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import NoSuchElementException        
+
 import datetime
 import re
 import json
@@ -28,8 +30,18 @@ class Competition(object):
 
     def setDate(self,ref):
 
-        eventDateRaw = ref.find_element_by_xpath("./div/div/a[2]").get_attribute("innerHTML")
+        try : 
+            # Search if live 
+            self.live = ref.find_element_by_class_name("live") != None
+        except NoSuchElementException: 
+            self.live=False
 
+        # If live competition, the index is different 
+        if self.live:
+            eventDateRaw = ref.find_element_by_xpath("./div/div/a[3]").get_attribute("innerHTML")
+        else:
+            eventDateRaw = ref.find_element_by_xpath("./div/div/a[2]").get_attribute("innerHTML")
+        
 
         #Use a bit of regex magic to get startDate, endDate, month and year.
         # ^(\w+)\s+(\w+)\s+(\w+)$  -> One day event

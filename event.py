@@ -31,20 +31,41 @@ class Event(object):
 
         except NoSuchElementException: 
             self.cancelled=False
+
+        #check if live or already finished : 
+        try : 
+            self.review = ref.find_element_by_class_name("live__content") != None
+        except NoSuchElementException: 
+            self.review=False
     
         if not self.cancelled:
-            self.date = self.getDate(ref)
-            self.category = ref.find_element_by_xpath("./div/div[1]/div/a[3]/div/div/div/div").get_attribute("innerHTML").strip()
-            self.resultsHREF = ref.find_element_by_xpath("./div/div[1]/div/a[1]").get_attribute("href")
-        else:
-            self.date=None
-            self.category=None
-            self.resultsHREF=None
+            if self.review:
+                self.type = ref.find_element_by_xpath("./div/div[1]/div/a[3]/div/div/div/div").get_attribute("innerHTML").strip()
+                self.category = ref.find_element_by_xpath('./div/div[1]/div/a[5]').get_attribute("innerHTML").strip()
+                self.resultsHREF = ref.find_element_by_xpath("./div/div[1]/div/a[1]").get_attribute("href")
+            else : 
+                self.type = ref.find_element_by_xpath("./div/div[1]/div/a[4]/div/div/div/div").get_attribute("innerHTML").strip()
+                self.category = ref.find_element_by_xpath('./div/div[1]/div/a[6]').get_attribute("innerHTML").strip()
+                self.resultsHREF = ref.find_element_by_xpath("./div/div[1]/div/a[1]").get_attribute("href")
 
+        else :
+            self.type = ref.find_element_by_xpath("./div/div[1]/div/a[4]/div/div/div/div").get_attribute("innerHTML").strip()
+            self.category = ref.find_element_by_xpath('./div/div[1]/div/a[6]').get_attribute("innerHTML").strip()            
+        
+        self.date = self.getDate(ref)
 
     def getDate(self,ref):
+
+        # No hours for training sessions
+        if self.category!="TRA":
+            if self.review:
+                eventHourRaw = ref.find_element_by_xpath("./div/div[1]/div/a[7]/div/div[1]/div/div[2]").get_attribute("innerHTML")
+            else:
+                eventHourRaw = ref.find_element_by_xpath("./div/div[1]/div/a[8]/div/div[1]/div/div[2]").get_attribute("innerHTML")
+        else:
+            eventHourRaw = "00:00"
+
         eventDateRaw = ref.find_element_by_xpath("./div/div[1]/div/a[2]/div/div/div").get_attribute("innerHTML")
-        eventHourRaw = ref.find_element_by_xpath("./div/div[1]/div/a[7]/div/div[1]/div/div[2]").get_attribute("innerHTML")
 
         strDate = str(self.year)+" "+eventDateRaw+"-"+eventHourRaw
         eventDate = datetime.datetime.strptime(strDate,"%Y %d %b-%H:%M")
@@ -89,3 +110,22 @@ class Event(object):
 
         return objDict
 
+
+
+
+
+
+if __name__ == "__main__":
+    # url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46945"
+    url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46965&seasoncode=2021"
+    # url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46935&seasoncode=2021"
+    driver.get(url)
+    elems = driver.find_elements_by_xpath('//*[@id="eventdetailscontent"]/*')
+
+    eventList = []
+
+    for elem in elems:
+        event = Event(elem,2020)
+        eventList.append(event)
+
+    print(eventList)

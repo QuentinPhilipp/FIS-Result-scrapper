@@ -22,7 +22,7 @@ print("Main page loaded")
 elems = driver.find_elements_by_class_name("table-row")
 
 # only get the first
-elems = elems[0:4]
+# elems = elems[0:4]
 
 competitionList = []
 
