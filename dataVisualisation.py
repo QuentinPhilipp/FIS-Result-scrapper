@@ -34,18 +34,18 @@ def countryPodiumTable(data,raceType):
                     results.append(event["results"]['2']["nation"])
                     results.append(event["results"]['3']["nation"])
 
-                # If not in the podium list, create a new country to add in the list
-                # Else increase the counters
-                print(results)
-                for i,result in enumerate(results):
-                    for country in podium:
-                        if country.name == result:
-                            country.increaseCounter(i)     
-                            break               
-                    else:
-                        newCountry = Country(result)
-                        newCountry.increaseCounter(i)
-                        podium.append(newCountry)
+                    # If not in the podium list, create a new country to add in the list
+                    # Else increase the counters
+                    # print(results)
+                    for i,result in enumerate(results):
+                        for country in podium:
+                            if country.name == result:
+                                country.increaseCounter(i)     
+                                break               
+                        else:
+                            newCountry = Country(result)
+                            newCountry.increaseCounter(i)
+                            podium.append(newCountry)
 
     # Sort the podium 
     podium = sorted(podium, key = attrgetter('first','second','third'),reverse=True)

@@ -24,7 +24,9 @@ class App(QDialog):
 
         self.fillCategories()
 
-        self.fillCountryPodium()
+        # Display graphs
+        self.showGraphs()
+
 
     def initUI(self):
         self.setWindowTitle(self.title)
@@ -67,7 +69,7 @@ class App(QDialog):
 
 
         # Set default category "All"
-        self.category = "All"
+        self.category = "Slalom"
         self.categoryList = QListWidget()
 
         for category in availablesCategories:
@@ -84,28 +86,24 @@ class App(QDialog):
         newCategory = self.categoryList.currentItem().text()
         print(f"Update selected category from {self.category} to {newCategory}")
         self.category = newCategory
+        self.resetGraphs()
 
-    
-    def fillCountryPodium(self):
+
+    def showGraphs(self):
+        self.createCountryPodium()
+
+
+    def resetGraphs(self):
+        # Reset podium per country
+        while (self.tableWidget.rowCount() > 0):
+            self.tableWidget.removeRow(0)
+        self.fillCountryPodium()
+
+
+    def createCountryPodium(self):
         self.tableWidget = QTableWidget()
-
-        data = dataVisualisation.countryPodiumTable(self.results,self.category)
-        print("data:",len(data))
-
-
-        # set row count
-        self.tableWidget.setRowCount(len(data))
-
-        # set column count
-        self.tableWidget.setColumnCount(4)
-        # self.tableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents	)
         self.tableWidget.setHorizontalHeaderLabels(["Country"," 1st Places ", " 2nd Places ", " 3rd Places "])
-
-        for i,country in enumerate(data):
-            self.tableWidget.setItem(i,0, QTableWidgetItem(country.name))
-            self.tableWidget.setItem(i,1, QTableWidgetItem(str(country.first)))
-            self.tableWidget.setItem(i,2, QTableWidgetItem(str(country.second)))
-            self.tableWidget.setItem(i,3, QTableWidgetItem(str(country.third)))
+        self.fillCountryPodium()
 
         self.tableWidget.resizeColumnToContents(1)
         self.tableWidget.resizeColumnToContents(2)
@@ -113,7 +111,22 @@ class App(QDialog):
 
         self.countryPodium = QVBoxLayout()
         self.countryPodium.addWidget(self.tableWidget)
+
         self.plotLine1GroupBox1.setLayout(self.countryPodium)
+
+    def fillCountryPodium(self):
+        data = dataVisualisation.countryPodiumTable(self.results,self.category)
+        self.tableWidget.setRowCount(len(data))
+        self.tableWidget.setColumnCount(4)
+
+        for i,country in enumerate(data):
+            self.tableWidget.setItem(i,0, QTableWidgetItem(country.name))
+            self.tableWidget.setItem(i,1, QTableWidgetItem(str(country.first)))
+            self.tableWidget.setItem(i,2, QTableWidgetItem(str(country.second)))
+            self.tableWidget.setItem(i,3, QTableWidgetItem(str(country.third)))
+
+
+        
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
