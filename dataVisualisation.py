@@ -1,4 +1,5 @@
 from operator import attrgetter
+import datetime
 
 class Country(object):
     """
@@ -56,8 +57,75 @@ def countryPodiumTable(data,raceType):
 
 
 
+def getEventsList(results):
+    eventList = []
+    for competition in results:
+        for event in competition["events"]:
+            # If event is not cancelled and already past
+            if not event["cancelled"] and event["review"]:
+                event["place"]=competition["place"]
+                event["country"]=competition["country"]
+
+                eventList.append(event)
+    return eventList
 
 
+def eventResultTable(event):
+    results = []
+    if event['type'] == "Slalom" or event['type'] == "Giant Slalom":
+        for rank,athlete in enumerate(event["results"].keys()):
+            athleteResult = {}
+            athleteResult["rank"] = rank+1
+            athleteResult["name"] = event["results"][athlete]["athlete"]
+            athleteResult["country"] = event["results"][athlete]["nation"]
+            athleteResult["run1"] = event["results"][athlete]["run1"]
+            athleteResult["run2"] = event["results"][athlete]["run2"]
+            athleteResult["total"] = event["results"][athlete]["totTime"]
+
+
+            try:
+                run1 = datetime.datetime.strptime(event["results"][athlete]["run1"],"%M:%S.%f")
+            except:
+                run1 = datetime.datetime.strptime(event["results"][athlete]["run1"],"%S.%f")
+            try:
+                run2 = datetime.datetime.strptime(event["results"][athlete]["run2"],"%M:%S.%f")
+            except:
+                run2 = datetime.datetime.strptime(event["results"][athlete]["run2"],"%S.%f")
+
+            athleteResult["diff"] = millis_interval(run1,run2)
+            results.append(athleteResult)
+
+    elif event['type'] == "Super G" or event['type'] == "Downhill":
+        for rank,athlete in enumerate(event["results"].keys()):
+            athleteResult = {}
+            athleteResult["rank"] = rank+1
+            athleteResult["name"] = event["results"][athlete]["athlete"]
+            athleteResult["country"] = event["results"][athlete]["nation"]
+            athleteResult["time"] = event["results"][athlete]["time"]
+
+            results.append(athleteResult)
+    
+    elif event['type'] == "Parallel":
+        for rank,athlete in enumerate(event["results"].keys()):
+            athleteResult = {}
+            athleteResult["rank"] = rank+1
+            athleteResult["name"] = event["results"][athlete]["athlete"]
+            athleteResult["country"] = event["results"][athlete]["nation"]
+            
+            results.append(athleteResult)
+
+    return results
+
+
+
+
+def millis_interval(start, end):
+    """start and end are datetime instances"""
+    diff = end - start
+    millis = diff.days * 24 * 60 * 60 * 1000
+    millis += diff.seconds * 1000
+    millis += diff.microseconds / 1000
+    return millis
 
 
 
