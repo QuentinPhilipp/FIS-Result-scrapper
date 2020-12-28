@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication,QLabel, QWidget, QPushButton, QHBoxLayout, QGroupBox, QDialog, QVBoxLayout, QGridLayout,QListWidget,QTableWidget,QTableWidgetItem,QAbstractScrollArea
+from PyQt5.QtGui import QColor
 from PyQt5.QtCore import pyqtSlot
 import json
 import dataVisualisation
@@ -196,7 +197,14 @@ class App(QDialog):
                 self.eventTable.setItem(i,1, QTableWidgetItem(str(athlete["country"])))
                 self.eventTable.setItem(i,2, QTableWidgetItem(str(athlete["run1"])))
                 self.eventTable.setItem(i,3, QTableWidgetItem(str(athlete["run2"])))
-                self.eventTable.setItem(i,4, QTableWidgetItem(str(athlete["diff"])))
+                self.eventTable.setItem(i,4,QTableWidgetItem(str(athlete["diff"])))
+
+                if athlete["diff"]>0:
+                    self.eventTable.item(i, 4).setBackground(QColor(237, 2, 2))
+                elif athlete["diff"]<0:
+                    self.eventTable.item(i, 4).setBackground(QColor(98, 252, 3))
+
+
                 self.eventTable.setItem(i,5, QTableWidgetItem(str(athlete["total"])))
 
                 self.eventTable.resizeColumnsToContents()
