@@ -117,6 +117,54 @@ def eventResultTable(event):
     return results
 
 
+def getDetails(name,results):
+    
+    # Name
+    # Country
+    # Number of races
+    # Highest ranking
+    bestRank = 1000
+    bestRace = None
+    numberOfRace = 0
+    numberOfPodium=0
+    bestCategory=None
+    country = None
+    for competition in results:
+        for event in competition["events"]:
+            try:
+                results = event["results"]
+                for rank,athlete in enumerate(event["results"].keys()):
+                    if event["results"][athlete]["athlete"] == name:
+                        print(event["place"])
+                        country=event["results"][athlete]["nation"]
+                        numberOfRace+=1
+                        if rank+1 < bestRank:
+                            bestRank=rank+1
+                            bestRace=event["place"]
+                            bestCategory=event["type"]
+                        if rank<3:
+                            numberOfPodium+=1
+            except:
+                pass
+   
+
+    stats = {}
+    stats['country']=country
+    stats['numberOfRace']=numberOfRace
+    stats['bestRank']=bestRank
+    stats['bestRace']=bestRace
+    stats['bestCategory']=bestCategory
+    stats['numberOfPodium']=numberOfPodium
+    # Flag ?
+    # Picture ?    
+    
+    
+    print(stats)
+    
+    return stats
+
+
+
 
 
 def millis_interval(start, end):
@@ -126,6 +174,7 @@ def millis_interval(start, end):
     millis += diff.seconds * 1000
     millis += diff.microseconds / 1000
     return millis
+
 
 
 

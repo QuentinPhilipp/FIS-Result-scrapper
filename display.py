@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout, QGroupBox, QDialog, QVBoxLayout, QGridLayout,QListWidget,QTableWidget,QTableWidgetItem,QAbstractScrollArea
+from PyQt5.QtWidgets import QApplication,QLabel, QWidget, QPushButton, QHBoxLayout, QGroupBox, QDialog, QVBoxLayout, QGridLayout,QListWidget,QTableWidget,QTableWidgetItem,QAbstractScrollArea
 from PyQt5.QtCore import pyqtSlot
 import json
 import dataVisualisation
@@ -44,10 +44,10 @@ class App(QDialog):
         self.plotLine1GroupBox3 = QGroupBox("Line1 Block 3")
 
         self.plotLine2GroupBox1 = QGroupBox("Race result")
-        self.plotLine2GroupBox2 = QGroupBox("Line2 Block 2")
-        self.plotLine2GroupBox3 = QGroupBox("Line2 Block 3")
+        self.plotLine2GroupBox2 = QGroupBox("Statistic of the season")
+        # self.plotLine2GroupBox3 = QGroupBox("Line2 Block 3")
 
-        self.bottomGroupBox = QGroupBox("Last Race")
+        # self.bottomGroupBox = QGroupBox("Last Race")
 
 
         windowLayout.addWidget(self.plotLine1GroupBox1,0,2,2,3)
@@ -55,13 +55,13 @@ class App(QDialog):
         windowLayout.addWidget(self.plotLine1GroupBox3,0,8,2,3)
 
         windowLayout.addWidget(self.plotLine2GroupBox1,2,2,2,4)
-        windowLayout.addWidget(self.plotLine2GroupBox2,2,6,2,2)
-        windowLayout.addWidget(self.plotLine2GroupBox3,2,8,2,3)
+        windowLayout.addWidget(self.plotLine2GroupBox2,2,6,2,5)
+        # windowLayout.addWidget(self.plotLine2GroupBox3,2,8,2,3)
 
         windowLayout.addWidget(self.categorySelectorGroupBox,0,0,2,2)
         windowLayout.addWidget(self.eventSelectorGroupBox,2,0,2,2)
 
-        windowLayout.addWidget(self.bottomGroupBox,5,0,2,11)
+        # windowLayout.addWidget(self.bottomGroupBox,5,0,2,11)
 
         self.setLayout(windowLayout)
         self.show()
@@ -84,7 +84,7 @@ class App(QDialog):
 
     def categorySelectedCallback(self):
         newCategory = self.categoryList.currentItem().text()
-        print(f"Update selected category from {self.category} to {newCategory}")
+        # print(f"Update selected category from {self.category} to {newCategory}")
         self.category = newCategory
         self.resetGraphsCategory()
 
@@ -117,6 +117,7 @@ class App(QDialog):
     def showGraphs(self):
         self.createCountryPodium()
         self.createEventResults()
+        self.createDetailAthlete()
 
     def resetGraphsCategory(self):
         # Reset podium per country
@@ -167,6 +168,16 @@ class App(QDialog):
 
         self.plotLine2GroupBox1.setLayout(self.eventPodium)
 
+        self.eventTable.cellClicked.connect(self.resultSelectionChanged)
+
+    def resultSelectionChanged(self,row,column):
+        if column==0:
+            self.detailedAthleteName = self.eventTable.item(row,0).text()
+            print(f"Show detailed info about the athlete : {self.detailedAthleteName}")
+            self.fillDetailAthlete()
+
+
+
     def fillEventResults(self):
 
         if self.event['type'] == "Slalom" or self.event['type'] == "Giant Slalom":
@@ -215,11 +226,17 @@ class App(QDialog):
 
 
 
+    def createDetailAthlete(self):
+
+        instruction = QLabel("Select an athlete first")
+        self.detailLayout = QVBoxLayout()
+        self.detailLayout.addWidget(instruction)
+
+        self.plotLine2GroupBox2.setLayout(self.detailLayout)
 
 
-
-
-
+    def fillDetailAthlete(self):
+        data = dataVisualisation.getDetails(self.detailedAthleteName,self.results)
         
 
 if __name__ == '__main__':
