@@ -1,75 +1,402 @@
 [
   {
-    "id": "46943",
+    "id": "46935",
     "live": false,
-    "place": "Alta Badia",
-    "country": "ITA",
-    "startDate": { "year": 2020, "month": 12, "day": 20, "hour": 0, "min": 0 },
-    "endDate": { "year": 2020, "month": 12, "day": 21, "hour": 0, "min": 0 },
+    "place": "Soelden",
+    "country": "AUT",
+    "startDate": { "year": 2020, "month": 10, "day": 17, "hour": 0, "min": 0 },
+    "endDate": { "year": 2020, "month": 10, "day": 18, "hour": 0, "min": 0 },
     "events": [
       {
         "cancelled": false,
         "review": true,
         "type": "Giant Slalom",
         "category": "WC",
-        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104296",
-        "results": "Results 1",
-        "date": { "year": 2020, "month": 12, "day": 20, "hour": 10, "min": 0 }
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104272",
+        "results": {
+          "1": {
+            "run1": "1:09.54",
+            "run2": "1:10.15",
+            "totTime": "2:19.69",
+            "nation": "ITA",
+            "athlete": "BASSINO Marta"
+          },
+          "2": {
+            "run1": "1:10.12",
+            "run2": "1:09.71",
+            "totTime": "2:19.83",
+            "nation": "ITA",
+            "athlete": "BRIGNONE Federica"
+          },
+          "3": {
+            "run1": "1:11.56",
+            "run2": "1:09.26",
+            "totTime": "2:20.82",
+            "nation": "SVK",
+            "athlete": "VLHOVA Petra"
+          },
+          "4": {
+            "run1": "1:10.72",
+            "run2": "1:10.27",
+            "totTime": "2:20.99",
+            "nation": "SUI",
+            "athlete": "GISIN Michelle"
+          },
+          "5": {
+            "run1": "1:10.46",
+            "run2": "1:10.98",
+            "totTime": "2:21.44",
+            "nation": "NOR",
+            "athlete": "HOLTMANN Mina Fuerst"
+          },
+          "6": {
+            "run1": "1:11.30",
+            "run2": "1:10.86",
+            "totTime": "2:22.16",
+            "nation": "ITA",
+            "athlete": "GOGGIA Sofia"
+          },
+          "7": {
+            "run1": "1:11.95",
+            "run2": "1:10.21",
+            "totTime": "2:22.16",
+            "nation": "SLO",
+            "athlete": "HROVAT Meta"
+          },
+          "8": {
+            "run1": "1:10.93",
+            "run2": "1:11.32",
+            "totTime": "2:22.25",
+            "nation": "SUI",
+            "athlete": "GUT-BEHRAMI Lara"
+          },
+          "9": {
+            "run1": "1:12.20",
+            "run2": "1:10.28",
+            "totTime": "2:22.48",
+            "nation": "FRA",
+            "athlete": "WORLEY Tessa"
+          },
+          "10": {
+            "run1": "1:12.43",
+            "run2": "1:10.07",
+            "totTime": "2:22.50",
+            "nation": "USA",
+            "athlete": "MOLTZAN Paula"
+          },
+          "11": {
+            "run1": "1:13.18",
+            "run2": "1:10.05",
+            "totTime": "2:23.23",
+            "nation": "SUI",
+            "athlete": "ELLENBERGER Andrea"
+          },
+          "12": {
+            "run1": "1:10.72",
+            "run2": "1:12.62",
+            "totTime": "2:23.34",
+            "nation": "NZL",
+            "athlete": "ROBINSON Alice"
+          },
+          "13": {
+            "run1": "1:13.01",
+            "run2": "1:10.37",
+            "totTime": "2:23.38",
+            "nation": "FRA",
+            "athlete": "MIRADOLI Romane"
+          },
+          "14": {
+            "run1": "1:12.72",
+            "run2": "1:10.68",
+            "totTime": "2:23.40",
+            "nation": "SWE",
+            "athlete": "HECTOR Sara"
+          },
+          "15": {
+            "run1": "1:12.98",
+            "run2": "1:10.54",
+            "totTime": "2:23.52",
+            "nation": "USA",
+            "athlete": "O BRIEN Nina"
+          },
+          "16": {
+            "run1": "1:11.62",
+            "run2": "1:11.90",
+            "totTime": "2:23.52",
+            "nation": "AUT",
+            "athlete": "TRUPPE Katharina"
+          },
+          "17": {
+            "run1": "1:11.46",
+            "run2": "1:12.19",
+            "totTime": "2:23.65",
+            "nation": "AUT",
+            "athlete": "BRUNNER Stephanie"
+          },
+          "18": {
+            "run1": "1:13.13",
+            "run2": "1:11.34",
+            "totTime": "2:24.47",
+            "nation": "RUS",
+            "athlete": "TKACHENKO Ekaterina"
+          },
+          "19": {
+            "run1": "1:12.84",
+            "run2": "1:11.75",
+            "totTime": "2:24.59",
+            "nation": "AUT",
+            "athlete": "SIEBENHOFER Ramona"
+          },
+          "20": {
+            "run1": "1:13.30",
+            "run2": "1:11.43",
+            "totTime": "2:24.73",
+            "nation": "CZE",
+            "athlete": "LEDECKA Ester"
+          },
+          "21": {
+            "run1": "1:13.22",
+            "run2": "1:11.84",
+            "totTime": "2:25.06",
+            "nation": "SLO",
+            "athlete": "BUCIK Ana"
+          },
+          "22": {
+            "run1": "1:12.86",
+            "run2": "1:12.22",
+            "totTime": "2:25.08",
+            "nation": "SUI",
+            "athlete": "NUFER Priska"
+          },
+          "23": {
+            "run1": "1:13.45",
+            "run2": "1:11.93",
+            "totTime": "2:25.38",
+            "nation": "NOR",
+            "athlete": "NORBYE Kaja"
+          },
+          "24": {
+            "run1": "1:12.37",
+            "run2": "1:13.37",
+            "totTime": "2:25.74",
+            "nation": "AUT",
+            "athlete": "GRITSCH Franziska"
+          },
+          "25": {
+            "run1": "1:13.44",
+            "run2": "1:12.35",
+            "totTime": "2:25.79",
+            "nation": "CAN",
+            "athlete": "GRENIER Valerie"
+          },
+          "26": {
+            "run1": "1:11.26",
+            "run2": "1:15.71",
+            "totTime": "2:26.97",
+            "nation": "SUI",
+            "athlete": "HOLDENER Wendy"
+          }
+        },
+        "date": { "year": 2020, "month": 10, "day": 17, "hour": 10, "min": 0 }
       },
       {
         "cancelled": false,
         "review": true,
-        "type": "Slalom",
+        "type": "Giant Slalom",
         "category": "WC",
-        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104297",
-        "results": "Results 1",
-        "date": { "year": 2020, "month": 12, "day": 21, "hour": 10, "min": 0 }
-      }
-    ]
-  },
-  {
-    "id": "46944",
-    "live": false,
-    "place": "Madonna di Campiglio",
-    "country": "ITA",
-    "startDate": { "year": 2020, "month": 12, "day": 22, "hour": 0, "min": 0 },
-    "endDate": { "year": 2020, "month": 12, "day": 22, "hour": 0, "min": 0 },
-    "events": [
-      {
-        "cancelled": false,
-        "review": true,
-        "type": "Slalom",
-        "category": "WC",
-        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104299",
-        "results": "Results 1",
-        "date": { "year": 2020, "month": 12, "day": 22, "hour": 17, "min": 45 }
-      }
-    ]
-  },
-  {
-    "id": "46945",
-    "live": true,
-    "place": "Bormio",
-    "country": "ITA",
-    "startDate": { "year": 2020, "month": 12, "day": 26, "hour": 0, "min": 0 },
-    "endDate": { "year": 2020, "month": 12, "day": 30, "hour": 0, "min": 0 },
-    "events": [
-      {
-        "cancelled": false,
-        "review": true,
-        "type": "Super G",
-        "category": "WC",
-        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104303",
-        "results": "Results 1",
-        "date": { "year": 2020, "month": 12, "day": 29, "hour": 11, "min": 30 }
-      },
-      {
-        "cancelled": false,
-        "review": false,
-        "type": "Downhill",
-        "category": "WC",
-        "results": "None",
-        "date": { "year": 2020, "month": 12, "day": 30, "hour": 11, "min": 30 }
+        "resultsHREF": "https://www.fis-ski.com/DB/general/results.html?sectorcode=AL&raceid=104273",
+        "results": {
+          "1": {
+            "run1": "1:08.37",
+            "run2": "1:06.04",
+            "totTime": "2:14.41",
+            "nation": "NOR",
+            "athlete": "BRAATHEN Lucas"
+          },
+          "2": {
+            "run1": "1:08.44",
+            "run2": "1:06.02",
+            "totTime": "2:14.46",
+            "nation": "SUI",
+            "athlete": "ODERMATT Marco"
+          },
+          "3": {
+            "run1": "1:08.13",
+            "run2": "1:06.74",
+            "totTime": "2:14.87",
+            "nation": "SUI",
+            "athlete": "CAVIEZEL Gino"
+          },
+          "4": {
+            "run1": "1:08.28",
+            "run2": "1:06.62",
+            "totTime": "2:14.90",
+            "nation": "FRA",
+            "athlete": "PINTURAULT Alexis"
+          },
+          "5": {
+            "run1": "1:08.41",
+            "run2": "1:06.56",
+            "totTime": "2:14.97",
+            "nation": "SUI",
+            "athlete": "MEILLARD Loic"
+          },
+          "6": {
+            "run1": "1:08.23",
+            "run2": "1:06.74",
+            "totTime": "2:14.97",
+            "nation": "NOR",
+            "athlete": "KRISTOFFERSEN Henrik"
+          },
+          "7": {
+            "run1": "1:08.19",
+            "run2": "1:06.99",
+            "totTime": "2:15.18",
+            "nation": "SLO",
+            "athlete": "KRANJEC Zan"
+          },
+          "8": {
+            "run1": "1:08.55",
+            "run2": "1:06.90",
+            "totTime": "2:15.45",
+            "nation": "NOR",
+            "athlete": "NESTVOLD-HAUGEN Leif Kristian"
+          },
+          "9": {
+            "run1": "1:09.09",
+            "run2": "1:06.53",
+            "totTime": "2:15.62",
+            "nation": "FRA",
+            "athlete": "FAVROT Thibaut"
+          },
+          "10": {
+            "run1": "1:08.70",
+            "run2": "1:07.08",
+            "totTime": "2:15.78",
+            "nation": "ITA",
+            "athlete": "DE ALIPRANDINI Luca"
+          },
+          "11": {
+            "run1": "1:09.35",
+            "run2": "1:06.44",
+            "totTime": "2:15.79",
+            "nation": "SUI",
+            "athlete": "MURISIER Justin"
+          },
+          "12": {
+            "run1": "1:08.91",
+            "run2": "1:06.95",
+            "totTime": "2:15.86",
+            "nation": "CRO",
+            "athlete": "ZUBCIC Filip"
+          },
+          "13": {
+            "run1": "1:09.84",
+            "run2": "1:06.24",
+            "totTime": "2:16.08",
+            "nation": "ITA",
+            "athlete": "BORSOTTI Giovanni"
+          },
+          "14": {
+            "run1": "1:09.88",
+            "run2": "1:06.33",
+            "totTime": "2:16.21",
+            "nation": "GER",
+            "athlete": "LUITZ Stefan"
+          },
+          "15": {
+            "run1": "1:09.06",
+            "run2": "1:07.17",
+            "totTime": "2:16.23",
+            "nation": "GER",
+            "athlete": "SCHMID Alexander"
+          },
+          "16": {
+            "run1": "1:09.00",
+            "run2": "1:07.36",
+            "totTime": "2:16.36",
+            "nation": "FRA",
+            "athlete": "MUFFAT-JEANDET Victor"
+          },
+          "17": {
+            "run1": "1:09.53",
+            "run2": "1:06.86",
+            "totTime": "2:16.39",
+            "nation": "AUT",
+            "athlete": "BRENNSTEINER Stefan"
+          },
+          "18": {
+            "run1": "1:09.72",
+            "run2": "1:06.73",
+            "totTime": "2:16.45",
+            "nation": "BEL",
+            "athlete": "MAES Sam"
+          },
+          "19": {
+            "run1": "1:10.09",
+            "run2": "1:06.49",
+            "totTime": "2:16.58",
+            "nation": "CAN",
+            "athlete": "READ Erik"
+          },
+          "20": {
+            "run1": "1:10.05",
+            "run2": "1:06.63",
+            "totTime": "2:16.68",
+            "nation": "SUI",
+            "athlete": "SETTE Daniele"
+          },
+          "21": {
+            "run1": "1:09.59",
+            "run2": "1:07.16",
+            "totTime": "2:16.75",
+            "nation": "ITA",
+            "athlete": "MOELGG Manfred"
+          },
+          "22": {
+            "run1": "1:09.19",
+            "run2": "1:07.75",
+            "totTime": "2:16.94",
+            "nation": "USA",
+            "athlete": "FORD Tommy"
+          },
+          "23": {
+            "run1": "1:10.02",
+            "run2": "1:07.01",
+            "totTime": "2:17.03",
+            "nation": "ITA",
+            "athlete": "NANI Roberto"
+          },
+          "24": {
+            "run1": "1:10.27",
+            "run2": "1:07.13",
+            "totTime": "2:17.40",
+            "nation": "AUT",
+            "athlete": "KRIECHMAYR Vincent"
+          },
+          "25": {
+            "run1": "1:09.54",
+            "run2": "1:07.91",
+            "totTime": "2:17.45",
+            "nation": "AUT",
+            "athlete": "MAYER Matthias"
+          },
+          "26": {
+            "run1": "1:09.31",
+            "run2": "1:08.15",
+            "totTime": "2:17.46",
+            "nation": "FRA",
+            "athlete": "FAIVRE Mathieu"
+          },
+          "27": {
+            "run1": "1:10.45",
+            "run2": "1:07.03",
+            "totTime": "2:17.48",
+            "nation": "USA",
+            "athlete": "RADAMUS River"
+          }
+        },
+        "date": { "year": 2020, "month": 10, "day": 18, "hour": 10, "min": 0 }
       }
     ]
   }

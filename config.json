@@ -24,12 +24,11 @@
       "rank": null
     },
     "Giant Slalom": {
-      "run1": null,
-      "run2": null,
-      "totTime": null,
-      "nation": null,
-      "athlete": null,
-      "rank": null
+      "run1": "//*[@id=\"events-info-results\"]/div/a[{{rank}}]/div/div/div[7]",
+      "run2": "//*[@id=\"events-info-results\"]/div/a[{{rank}}]/div/div/div[8]",
+      "totTime": "//*[@id=\"events-info-results\"]/div/a[{{rank}}]/div/div/div[9]",
+      "nation": "//*[@id=\"events-info-results\"]/div/a[{{rank}}]/div/div/div[6]/div/span[2]",
+      "athlete": "//*[@id=\"events-info-results\"]/div/a[{{rank}}]/div/div/div[4]"
     },
     "Downhill": {
       "time": null,

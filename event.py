@@ -136,6 +136,10 @@ if __name__ == "__main__":
     url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46935&seasoncode=2021"
     driver.get(url)
     elems = driver.find_elements_by_xpath('//*[@id="eventdetailscontent"]/*')
+    print("Event page loaded")
+
+
+    elems = elems[0:1]
 
     eventList = []
 
