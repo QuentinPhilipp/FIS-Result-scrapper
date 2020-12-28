@@ -21,8 +21,8 @@ print("Main page loaded")
 
 elems = driver.find_elements_by_class_name("table-row")
 
-# only get the first
-# elems = elems[0:4]
+
+elems = elems[9:12]
 
 competitionList = []
 
@@ -33,24 +33,18 @@ for e in elems:
 
 # For each competition, go to the corresponding page
 for competition in competitionList:
-    url = f"https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid={competition.id}"
-    print("Check competition :",url)
-    driver.get(url)
-    events = driver.find_elements_by_xpath('//*[@id="eventdetailscontent"]/*')
-    for e in events:
-        event = Event(e,competition.startDate.year)
-        competition.events.append(event)
+    competition.addEvents()
 
-print("\nCompetition list:")
 
+# Convert nested objects into a dictionnary for storage system
 dictCompetitionList = []
 for competition in competitionList :
-    # Convert nested objects into a dictionnary for storage system
     dictCompetitionList.append(competition.customDict())
 
 
 with open("results.json","w") as f:
-    print(dictCompetitionList)
+    # print("\nCompetition list:")
+    # print(dictCompetitionList)
     f.write(json.dumps(dictCompetitionList))
 
 

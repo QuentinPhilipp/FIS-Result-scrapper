@@ -7,7 +7,7 @@ import re
 import json
 import copy
 from eventDate import EventDate
-
+from event import Event
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
@@ -24,17 +24,28 @@ class Competition(object):
     def __init__(self,ref):
         self.ref = ref
         self.id = ref.get_attribute("id")
-        self.setDate(ref)
-        self.events = []
-
-
-    def setDate(self,ref):
 
         try : 
             # Search if live 
             self.live = ref.find_element_by_class_name("live") != None
         except NoSuchElementException: 
             self.live=False
+
+
+        self.setDate(ref)
+
+        if self.live:
+            self.place = ref.find_element_by_xpath("./div/div/a[6]/div[1]").get_attribute("innerHTML")
+            self.country = ref.find_element_by_xpath("./div/div/a[7]/div/span[2]").get_attribute("innerHTML")
+        else :
+            self.place = ref.find_element_by_xpath("./div/div/a[5]/div[1]").get_attribute("innerHTML")
+            self.country = ref.find_element_by_xpath("./div/div/a[6]/div/span[2]").get_attribute("innerHTML")
+
+        self.events = []
+
+
+    def setDate(self,ref):
+
 
         # If live competition, the index is different 
         if self.live:
@@ -99,6 +110,21 @@ class Competition(object):
         return dispString
 
 
+    def addEvents(self):
+        url = f"https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid={self.id}"
+        print("Check competition :",url)
+        driver.get(url)
+        events = driver.find_elements_by_xpath('//*[@id="eventdetailscontent"]/*')
+        for e in events:
+            event = Event(e,self.startDate.year)
+
+            with open('config.json','r') as config:
+                data=json.load(config)
+                blacklist = data["blacklistCompetition"]
+                if event.category not in blacklist:
+                    self.events.append(event)
+
+
     def customDict(self):
         """
         Return a dict with nested events
@@ -127,10 +153,13 @@ if __name__ == "__main__":
     # only get the 4 first
 
     elems = elems[0:3]
+    print("Data retrieved")
+
 
     competitionList = []
 
     for e in elems:
+        print("Adding new competition")
         competition = Competition(e)
         competitionList.append(competition)
 

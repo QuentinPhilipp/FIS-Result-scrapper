@@ -1,17 +1,52 @@
 {
-    "month":
-    {
-        "Jan":1,
-        "Feb":2,
-        "Mar":3,
-        "Apr":4,
-        "May":5,
-        "Jun":6,
-        "Jul":7,
-        "Aug":8,
-        "Sep":9,
-        "Oct":10,
-        "Nov":11,
-        "Dec":12
+  "month": {
+    "Jan": 1,
+    "Feb": 2,
+    "Mar": 3,
+    "Apr": 4,
+    "May": 5,
+    "Jun": 6,
+    "Jul": 7,
+    "Aug": 8,
+    "Sep": 9,
+    "Oct": 10,
+    "Nov": 11,
+    "Dec": 12
+  },
+  "blacklistCompetition": ["TRA", "WQUA"],
+  "resultsStruct": {
+    "Slalom": {
+      "run1": null,
+      "run2": null,
+      "totTime": null,
+      "nation": null,
+      "athlete": null,
+      "rank": null
+    },
+    "Giant Slalom": {
+      "run1": null,
+      "run2": null,
+      "totTime": null,
+      "nation": null,
+      "athlete": null,
+      "rank": null
+    },
+    "Downhill": {
+      "time": null,
+      "nation": null,
+      "athlete": null,
+      "rank": null
+    },
+    "Super G": {
+      "time": null,
+      "nation": null,
+      "athlete": null,
+      "rank": null
+    },
+    "Parallel": {
+      "nation": null,
+      "athlete": null,
+      "rank": null
     }
+  }
 }

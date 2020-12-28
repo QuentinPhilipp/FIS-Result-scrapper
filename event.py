@@ -6,6 +6,7 @@ import datetime
 import re
 import json
 from eventDate import EventDate
+from result import Result
 import copy
 
 
@@ -46,13 +47,14 @@ class Event(object):
             else : 
                 self.type = ref.find_element_by_xpath("./div/div[1]/div/a[4]/div/div/div/div").get_attribute("innerHTML").strip()
                 self.category = ref.find_element_by_xpath('./div/div[1]/div/a[6]').get_attribute("innerHTML").strip()
-                self.resultsHREF = ref.find_element_by_xpath("./div/div[1]/div/a[1]").get_attribute("href")
-
         else :
             self.type = ref.find_element_by_xpath("./div/div[1]/div/a[4]/div/div/div/div").get_attribute("innerHTML").strip()
             self.category = ref.find_element_by_xpath('./div/div[1]/div/a[6]').get_attribute("innerHTML").strip()            
         
         self.date = self.getDate(ref)
+
+        self.results = self.getResults()
+
 
     def getDate(self,ref):
 
@@ -96,6 +98,19 @@ class Event(object):
 
 
 
+
+    def getResults(self):
+
+        if not self.cancelled and self.review:
+            resultsObj = Result(self.resultsHREF,self.type)
+            results = resultsObj.getResults()
+        else :
+            results="None"
+
+        return results
+
+
+
     def customDict(self):
         objDict = copy.copy(self).__dict__
 
@@ -117,8 +132,8 @@ class Event(object):
 
 if __name__ == "__main__":
     # url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46945"
-    url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46965&seasoncode=2021"
-    # url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46935&seasoncode=2021"
+    # url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46965&seasoncode=2021"
+    url = "https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid=46935&seasoncode=2021"
     driver.get(url)
     elems = driver.find_elements_by_xpath('//*[@id="eventdetailscontent"]/*')
 
