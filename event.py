@@ -35,12 +35,15 @@ class Event(object):
 
         #check if live or already finished : 
         try : 
-            self.review = ref.find_element_by_class_name("live__content") != None
+            self.review = ref.find_element_by_class_name("live__content").get_attribute("innerHTML") == "review"
         except NoSuchElementException: 
             self.review=False
-    
+        try : 
+            self.live = ref.find_element_by_class_name("live__content").get_attribute("innerHTML") == "live"
+        except NoSuchElementException: 
+            self.live=False   
         if not self.cancelled:
-            if self.review:
+            if self.review or self.live:
                 self.type = ref.find_element_by_xpath("./div/div[1]/div/a[3]/div/div/div/div").get_attribute("innerHTML").strip()
                 self.category = ref.find_element_by_xpath('./div/div[1]/div/a[5]').get_attribute("innerHTML").strip()
                 self.resultsHREF = ref.find_element_by_xpath("./div/div[1]/div/a[1]").get_attribute("href")
@@ -60,7 +63,7 @@ class Event(object):
 
         # No hours for training sessions
         if self.category!="TRA":
-            if self.review:
+            if self.review or self.live:
                 eventHourRaw = ref.find_element_by_xpath("./div/div[1]/div/a[7]/div/div[1]/div/div[2]").get_attribute("innerHTML")
             else:
                 eventHourRaw = ref.find_element_by_xpath("./div/div[1]/div/a[8]/div/div[1]/div/div[2]").get_attribute("innerHTML")

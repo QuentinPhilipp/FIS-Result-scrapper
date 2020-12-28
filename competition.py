@@ -112,7 +112,7 @@ class Competition(object):
 
     def addEvents(self):
         url = f"https://www.fis-ski.com/DB/general/event-details.html?sectorcode=AL&eventid={self.id}"
-        print("Check competition :",url)
+        print(f"Check competition {self.place}, {self.country} :",url)
         driver.get(url)
         events = driver.find_elements_by_xpath('//*[@id="eventdetailscontent"]/*')
         for e in events:
