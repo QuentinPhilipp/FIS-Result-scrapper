@@ -30,9 +30,9 @@ class Result(object):
             self.struct = data["resultsStruct"][raceType]
 
     def getResults(self):
-        print(f"Load results for event : {self.url}")
+        # print(f"Load results for event : {self.url}")
         driver.get(self.url)
-        print("Results loaded")
+        # print("Results loaded")
 
         # Get size of the table
 
