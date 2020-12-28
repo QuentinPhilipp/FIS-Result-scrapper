@@ -174,6 +174,11 @@ class App(QDialog):
         if column==0:
             self.detailedAthleteName = self.eventTable.item(row,0).text()
             print(f"Show detailed info about the athlete : {self.detailedAthleteName}")
+
+            # Remove all current stats
+            for i in reversed(range(self.detailLayout.count())): 
+                self.detailLayout.itemAt(i).widget().deleteLater()
+
             self.fillDetailAthlete()
 
 
@@ -228,9 +233,9 @@ class App(QDialog):
 
     def createDetailAthlete(self):
 
-        instruction = QLabel("Select an athlete first")
+        self.instructionAthlete = QLabel("Select an athlete first")
         self.detailLayout = QVBoxLayout()
-        self.detailLayout.addWidget(instruction)
+        self.detailLayout.addWidget(self.instructionAthlete)
 
         self.plotLine2GroupBox2.setLayout(self.detailLayout)
 
@@ -238,6 +243,23 @@ class App(QDialog):
     def fillDetailAthlete(self):
         data = dataVisualisation.getDetails(self.detailedAthleteName,self.results)
         
+        # self.detailLayout.removeWidget(self.instructionAthlete)
+        
+        
+        nameCountry = QLabel(f"Name : {data['name']}  |  Country : {data['country']}")
+        numberOfRace = QLabel(f"Number of races : {data['numberOfRace']}")
+        numberOfPodium = QLabel(f"Number of podiums : {data['numberOfPodium']}")
+        bestRank = QLabel(f"Best rank : {data['bestRank']}")
+        bestRace = QLabel(f"Best race : {data['bestRace']}")
+        bestCategory = QLabel(f"Best category : {data['bestCategory']}")
+
+        self.detailLayout.addWidget(nameCountry)
+        self.detailLayout.addWidget(numberOfRace)
+        self.detailLayout.addWidget(numberOfPodium)
+        self.detailLayout.addWidget(bestRank)
+        self.detailLayout.addWidget(bestRace)
+        self.detailLayout.addWidget(bestCategory)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

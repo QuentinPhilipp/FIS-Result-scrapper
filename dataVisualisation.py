@@ -155,6 +155,7 @@ def getDetails(name,results):
     stats['bestRace']=bestRace
     stats['bestCategory']=bestCategory
     stats['numberOfPodium']=numberOfPodium
+    stats['name']=name
     # Flag ?
     # Picture ?    
     
