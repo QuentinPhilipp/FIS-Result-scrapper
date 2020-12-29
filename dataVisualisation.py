@@ -1,5 +1,6 @@
 from operator import attrgetter
 import datetime
+import json
 
 class Country(object):
     """
@@ -159,6 +160,33 @@ def getDetails(name,results):
     return stats
 
 
+def getCountryBreakdown(country):
+    months = {
+    "Jan":0,
+    "Feb":0,
+    "Mar":0,
+    "Apr":0,
+    "May":0,
+    "Jun":0,
+    "Jul":0,
+    "Aug":0,
+    "Sep":0,
+    "Oct":0,
+    "Nov":0,
+    "Dec":0
+    }
+
+    with open("results.json","r") as res:
+        results = json.load(res)
+
+    for competition in results:
+        for event in competition["events"]:
+            try:
+                results = event["results"]
+                for i in range(3):
+                    print(i)
+            except:
+                pass
 
 
 
@@ -179,4 +207,5 @@ if __name__ == "__main__":
     with open("results.json","r") as results:
         res = json.load(results)
 
-        countryPodiumTable(res,"All")
+        # countryPodiumTable(res,"All")
+        

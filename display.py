@@ -2,6 +2,11 @@ import sys
 from PyQt5.QtWidgets import QApplication,QLabel, QWidget, QPushButton, QHBoxLayout, QGroupBox, QDialog, QVBoxLayout, QGridLayout,QListWidget,QTableWidget,QTableWidgetItem,QAbstractScrollArea
 from PyQt5.QtGui import QColor
 from PyQt5.QtCore import pyqtSlot
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+
+import random
 import json
 import dataVisualisation
 
@@ -10,10 +15,10 @@ class App(QDialog):
     def __init__(self):
         super().__init__()
         self.title = 'FIS results GUI'
-        self.left = 100
-        self.top = 100
-        self.width = 1600
-        self.height = 800
+        self.left = 50
+        self.top = 50
+        self.width = 1800
+        self.height = 1000
         self.initUI()
 
 
@@ -119,6 +124,7 @@ class App(QDialog):
         self.createCountryPodium()
         self.createEventResults()
         self.createDetailAthlete()
+        self.createCountryResultsBreakdown()
 
     def resetGraphsCategory(self):
         # Reset podium per country
@@ -157,6 +163,63 @@ class App(QDialog):
             self.podiumTable.setItem(i,1, QTableWidgetItem(str(country.first)))
             self.podiumTable.setItem(i,2, QTableWidgetItem(str(country.second)))
             self.podiumTable.setItem(i,3, QTableWidgetItem(str(country.third)))
+
+    
+    
+    def createCountryResultsBreakdown(self):
+        # self.countryBreakdown = QTableWidget()
+        # self.fillEventResults()
+
+        self.country = "SUI"
+
+
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self.figure)
+
+        data = [random.random() for i in range(10)]
+        # data = dataVisualisation.getCountryBreakdown(self.country)
+        print(data)
+
+        # create an axis
+        ax = self.figure.add_subplot(111)
+
+        # discards the old graph
+        ax.clear()
+
+        x = ("Jan","Feb","Mar","Apr","Mai")
+        y = (1,2,3,4,5)
+
+        # data = plt.bar(x,y,align='center') # A bar chart
+        # # plt.xlabel('Bins')
+        # # plt.ylabel('Frequency')
+
+        # # plt.show()
+        
+        ax.set_xlabel("Months")
+        ax.set_ylabel("Nb of podiums")
+
+        # plot data
+        ax.plot(data, '*-')
+
+        # refresh canvas
+        self.canvas.draw()
+
+
+        layout = QVBoxLayout()
+        label = QLabel("Test")
+        label2 = QLabel("Test")
+
+        layout.addWidget(self.canvas)
+        # layout.addWidget(label)
+        # layout.addWidget(label2)
+
+        # self.eventPodium = QVBoxLayout()
+        # self.eventPodium.addWidget(self.eventTable)
+
+        self.plotLine1GroupBox3.setLayout(layout)
+
+        # self.eventTable.cellClicked.connect(self.resultSelectionChanged)
+
 
 
 
