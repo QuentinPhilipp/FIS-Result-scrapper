@@ -135,7 +135,6 @@ def getDetails(name,results):
                 results = event["results"]
                 for rank,athlete in enumerate(event["results"].keys()):
                     if event["results"][athlete]["athlete"] == name:
-                        print(event["place"])
                         country=event["results"][athlete]["nation"]
                         numberOfRace+=1
                         if rank+1 < bestRank:
@@ -156,11 +155,6 @@ def getDetails(name,results):
     stats['bestCategory']=bestCategory
     stats['numberOfPodium']=numberOfPodium
     stats['name']=name
-    # Flag ?
-    # Picture ?    
-    
-    
-    print(stats)
     
     return stats
 

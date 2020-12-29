@@ -91,16 +91,11 @@ class Competition(object):
 
 
     def __repr__(self):
-        objDict = copy.copy(self).__dict__
-
-        del objDict["ref"]
-        del objDict["startDate"]
-        del objDict["endDate"]
-
-        objDict['startDate'] = EventDate(self.startDate.year,self.startDate.month,self.startDate.day).__dict__
-        objDict['endDate'] = EventDate(self.endDate.year,self.endDate.month,self.endDate.day).__dict__
-
-        return json.dumps(objDict)
+        dispString = "Competition "+str(self.id)+ " -> " +str(self.startDate.day)+ "-" + str(self.endDate.day) +" "+self.startDate.strftime("%b %Y")
+        
+        for event in self.events:    
+            dispString += "\n  ~ " + str(event)
+        return dispString
 
     def __str__(self):
         dispString = "Competition "+str(self.id)+ " -> " +str(self.startDate.day)+ "-" + str(self.endDate.day) +" "+self.startDate.strftime("%b %Y")

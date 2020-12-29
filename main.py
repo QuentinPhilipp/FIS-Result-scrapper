@@ -1,9 +1,12 @@
 from competition import Competition
 from event import Event
+from mail import sendEmail
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import json
+
+
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
@@ -22,7 +25,7 @@ print("Main page loaded")
 elems = driver.find_elements_by_class_name("table-row")
 
 
-# elems = elems[9:15]
+elems = elems[10:15]
 
 competitionList = []
 
@@ -30,10 +33,21 @@ for e in elems:
     competition = Competition(e)
     competitionList.append(competition)
 
-
+liveEvent=[]
 # For each competition, go to the corresponding page
 for competition in competitionList:
     competition.addEvents()
+
+    if competition.live:
+        liveEvent.append(competition)
+
+
+print("Live events: ")
+for compet in liveEvent:
+    print(compet)
+
+# Send email about live competitions
+sendEmail(liveEvent)
 
 
 # Convert nested objects into a dictionnary for storage system

@@ -97,8 +97,10 @@ class Event(object):
         if self.cancelled:
             return "Cancelled"
         else:
-            return self.category+" : "+str(self.date)+ " -> "+self.resultsHREF
-
+            if hasattr(self,"resultsHREF"):
+                return self.category+" : "+str(self.date)+ " -> "+self.resultsHREF
+            else:
+                return self.category+" : "+str(self.date)
 
 
 
