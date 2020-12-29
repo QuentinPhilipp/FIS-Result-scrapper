@@ -25,7 +25,7 @@ print("Main page loaded")
 elems = driver.find_elements_by_class_name("table-row")
 
 
-elems = elems[10:15]
+elems = elems[10:13]
 
 competitionList = []
 

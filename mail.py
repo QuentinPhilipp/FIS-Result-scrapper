@@ -7,7 +7,6 @@ load_dotenv()
 def sendEmail(competitions):
     body = ""
 
-
     port = 587  # For starttls
     smtp_server = "smtp.gmail.com"
     sender_email = os.getenv("GMAIL_USER")
@@ -19,15 +18,9 @@ def sendEmail(competitions):
     for compet in competitions:
         body+=compet.place+" "+compet.country+"\n"
         for event in compet.events:
-            body+="  | "+event.type+" - " + str(event.date.day)+"/"+str(event.date.month)+" "+str(event.date.hour)+":"+str(event.date.min)+"\n"
+            body+="  | "+event.type+" - " + str(event.date)+"\n"
         body+="\n"
 
-    # message = """\
-    # Subject: FIS Event live
-
-    # Live events today\n\n"""
-
-    # message+=body
     message = 'Subject: {}\n\n{}'.format("FIS Event live", body)
 
     print(message)
