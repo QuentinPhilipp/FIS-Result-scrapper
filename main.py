@@ -25,7 +25,7 @@ print("Main page loaded")
 elems = driver.find_elements_by_class_name("table-row")
 
 
-elems = elems[10:13]
+# elems = elems[10:13]
 
 competitionList = []
 
@@ -41,10 +41,6 @@ for competition in competitionList:
     if competition.live:
         liveEvent.append(competition)
 
-
-print("Live events: ")
-for compet in liveEvent:
-    print(compet)
 
 # Send email about live competitions
 sendEmail(liveEvent)

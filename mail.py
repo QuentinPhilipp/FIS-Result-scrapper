@@ -5,34 +5,37 @@ from dotenv import load_dotenv  #Used to store credentials
 load_dotenv()
 
 def sendEmail(competitions):
-    body = ""
 
-    port = 587  # For starttls
-    smtp_server = "smtp.gmail.com"
-    sender_email = os.getenv("GMAIL_USER")
-    password = os.getenv("GMAIL_PASSWORD")
+    if len(competitions)>0:
+        body = ""
 
-    receiver_email = "philippquentin6@gmail.com"
+        port = 587  # For starttls
+        smtp_server = "smtp.gmail.com"
+        sender_email = os.getenv("GMAIL_USER")
+        password = os.getenv("GMAIL_PASSWORD")
+
+        receiver_email = "philippquentin6@gmail.com"
 
 
-    for compet in competitions:
-        body+=compet.place+" "+compet.country+"\n"
-        for event in compet.events:
-            body+="  | "+event.type+" - " + str(event.date)+"\n"
-        body+="\n"
+        for compet in competitions:
+            body+=compet.place+" "+compet.country+"\n"
+            for event in compet.events:
+                body+="  | "+event.type+" - " + str(event.date)+"\n"
+            body+="\n"
 
-    message = 'Subject: {}\n\n{}'.format("FIS Event live", body)
+        message = 'Subject: {}\n\n{}'.format("FIS Event live", body)
 
-    print(message)
+        print(message)
 
-    context = ssl.create_default_context()
-    with smtplib.SMTP(smtp_server, port) as server:
-        server.ehlo()
-        server.starttls(context=context)
-        server.ehlo()
-        server.login(sender_email, password)
-        server.sendmail(sender_email, receiver_email, message)
-
+        context = ssl.create_default_context()
+        with smtplib.SMTP(smtp_server, port) as server:
+            server.ehlo()
+            server.starttls(context=context)
+            server.ehlo()
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)
+    else :
+        print("No competitions live today")
 
 
 if __name__ == "__main__":
