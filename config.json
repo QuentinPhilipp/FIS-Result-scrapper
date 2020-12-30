@@ -43,5 +43,19 @@
       "nation": "//*[@id=\"events-info-results\"]/div/a[{{rank}}]/div/div/div[6]/div/span[2]",
       "athlete": "//*[@id=\"events-info-results\"]/div/a[{{rank}}]/div/div/div[4]"
     }
+  },
+  "idToMonth": {
+    "1": "Jan",
+    "2": "Feb",
+    "3": "Mar",
+    "4": "Apr",
+    "5": "May",
+    "6": "Jun",
+    "7": "Jul",
+    "8": "Aug",
+    "9": "Sep",
+    "10": "Oct",
+    "11": "Nov",
+    "12": "Dec"
   }
 }

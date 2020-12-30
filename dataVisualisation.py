@@ -160,34 +160,49 @@ def getDetails(name,results):
     return stats
 
 
-def getCountryBreakdown(country):
+def getCountryBreakdown(country,category):
     months = {
+    "Jul":0,
+    "Aug":0,
+    "Sep":0,
+    "Oct":0,
+    "Nov":0,
+    "Dec":0,
     "Jan":0,
     "Feb":0,
     "Mar":0,
     "Apr":0,
     "May":0,
     "Jun":0,
-    "Jul":0,
-    "Aug":0,
-    "Sep":0,
-    "Oct":0,
-    "Nov":0,
-    "Dec":0
     }
 
     with open("results.json","r") as res:
         results = json.load(res)
-
+    
+    # Translate monthID to monthStr
+    with open("config.json","r") as config:
+        monthTranslate = json.load(config)["idToMonth"]
+    
     for competition in results:
         for event in competition["events"]:
-            try:
-                results = event["results"]
-                for i in range(3):
-                    print(i)
-            except:
-                pass
+            if event["type"]==category or category=="All":
+                try:
+                    results = event["results"]
+                    for i in range(1,4):
+                        print(results[str(i)]["nation"])
+                        if results[str(i)]["nation"]==country:
+                            monthName = monthTranslate[str(event["date"]["month"])]
+                            months[str(monthName)]+=1
+                except:
+                    pass
 
+    monthLabel = list(months.keys())
+    monthData = list(months.values())
+
+    # print(monthLabel)
+    # print(monthData)
+
+    return [monthLabel,monthData]
 
 
 def millis_interval(start, end):
@@ -204,8 +219,9 @@ def millis_interval(start, end):
 if __name__ == "__main__":
     import json
 
-    with open("results.json","r") as results:
-        res = json.load(results)
+    # with open("results.json","r") as results:
+    #     res = json.load(results)
 
         # countryPodiumTable(res,"All")
         
+    print(getCountryBreakdown("SVK",'All'))

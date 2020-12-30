@@ -46,8 +46,8 @@ class App(QDialog):
 
         self.statsGroupBox = QGroupBox("Stats")
         self.plotLine1GroupBox1 = QGroupBox("Podium per country")
-        self.plotLine1GroupBox2 = QGroupBox("Line1 Block 2")
-        self.plotLine1GroupBox3 = QGroupBox("Line1 Block 3")
+        self.plotLine1GroupBox2 = QGroupBox("Controls")
+        self.plotLine1GroupBox3 = QGroupBox("Breakdown per month")
 
         self.plotLine2GroupBox1 = QGroupBox("Race result")
         self.plotLine2GroupBox2 = QGroupBox("Statistic of the season")
@@ -125,18 +125,53 @@ class App(QDialog):
         self.createEventResults()
         self.createDetailAthlete()
         self.createCountryResultsBreakdown()
+        self.createControls()
 
     def resetGraphsCategory(self):
         # Reset podium per country
         while (self.podiumTable.rowCount() > 0):
             self.podiumTable.removeRow(0)
         self.fillCountryPodium()
+        # self.resetGraphBreakdown()
 
 
     def resetGraphsEvents(self):
         while (self.eventTable.rowCount() > 0):
             self.eventTable.removeRow(0)
         self.fillEventResults()
+
+
+    def resetGraphBreakdown(self):
+        # discards the old graph
+        self.ax.clear()
+        # refresh canvas
+        self.canvas.draw()
+
+
+        # Reset all the labels in the controlBox
+        # controlLayout.clearL
+
+        for i in reversed(range(self.labelLayout.count())): 
+            # layoutToDel = self.labelLayout.itemAt(i)
+            widgetToRemove = self.labelLayout.itemAt(i).widget()
+            # remove it from the layout list
+            self.labelLayout.removeWidget(widgetToRemove)
+            # remove it from the gui
+            widgetToRemove.setParent(None)
+
+    def createControls(self):
+        self.resetGraphButton = QPushButton(text="Reset graph")
+
+        self.resetGraphButton.clicked.connect(self.resetGraphBreakdown)
+
+        self.controlLayout = QVBoxLayout()
+        
+        self.controlLayout.addWidget(self.resetGraphButton)
+        self.controlLayout.addStretch()
+        self.labelLayout = QVBoxLayout()
+
+        self.plotLine1GroupBox2.setLayout(self.controlLayout)
+        self.controlLayout.addLayout(self.labelLayout)
 
 
     def createCountryPodium(self):
@@ -153,6 +188,9 @@ class App(QDialog):
 
         self.plotLine1GroupBox1.setLayout(self.countryPodium)
 
+        self.podiumTable.cellClicked.connect(self.countryMedalBreakdownCallback)
+
+
     def fillCountryPodium(self):
         data = dataVisualisation.countryPodiumTable(self.results,self.category)
         self.podiumTable.setRowCount(len(data))
@@ -165,61 +203,53 @@ class App(QDialog):
             self.podiumTable.setItem(i,3, QTableWidgetItem(str(country.third)))
 
     
+
+    def countryMedalBreakdownCallback(self,row,column):
+        if column==0:
+            self.country = self.podiumTable.item(row,0).text()
+            print(f"Show detailed info about the country : {self.country}")
+
+            self.fillCountryResultsBreakdown()
     
     def createCountryResultsBreakdown(self):
-        # self.countryBreakdown = QTableWidget()
-        # self.fillEventResults()
-
-        self.country = "SUI"
-
-
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
 
-        data = [random.random() for i in range(10)]
-        # data = dataVisualisation.getCountryBreakdown(self.country)
-        print(data)
-
+        
         # create an axis
-        ax = self.figure.add_subplot(111)
+        self.ax = self.figure.add_subplot(111)
 
         # discards the old graph
-        ax.clear()
-
-        x = ("Jan","Feb","Mar","Apr","Mai")
-        y = (1,2,3,4,5)
-
-        # data = plt.bar(x,y,align='center') # A bar chart
-        # # plt.xlabel('Bins')
-        # # plt.ylabel('Frequency')
-
-        # # plt.show()
+        self.ax.clear()
         
-        ax.set_xlabel("Months")
-        ax.set_ylabel("Nb of podiums")
+        self.ax.set_xlabel("Months")
+        self.ax.set_ylabel("Nb of podiums")
 
+        layout = QVBoxLayout()
+
+        layout.addWidget(self.canvas)
+
+        self.plotLine1GroupBox3.setLayout(layout)
+
+    def fillCountryResultsBreakdown(self):
+        data = dataVisualisation.getCountryBreakdown(self.country,self.category)
+
+        
         # plot data
-        ax.plot(data, '*-')
+        p = self.ax.plot(data[0],data[1], '*-')
 
         # refresh canvas
         self.canvas.draw()
 
+        # Get color from last line added on the graph
+        hexColor = p[0].get_color()
 
-        layout = QVBoxLayout()
-        label = QLabel("Test")
-        label2 = QLabel("Test")
+        # Show info in the control box
+        desc = self.country + " : " + self.category
+        labelColor = QLabel(desc)
+        labelColor.setStyleSheet(f"background-color: {hexColor}; border: 1px solid black;") 
 
-        layout.addWidget(self.canvas)
-        # layout.addWidget(label)
-        # layout.addWidget(label2)
-
-        # self.eventPodium = QVBoxLayout()
-        # self.eventPodium.addWidget(self.eventTable)
-
-        self.plotLine1GroupBox3.setLayout(layout)
-
-        # self.eventTable.cellClicked.connect(self.resultSelectionChanged)
-
+        self.labelLayout.addWidget(labelColor)
 
 
 
