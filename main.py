@@ -1,6 +1,6 @@
 from competition import Competition
 from event import Event
-from mail import sendEmail
+from mail import sendHTMLEmail
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
@@ -41,9 +41,10 @@ for competition in competitionList:
     if competition.live:
         liveEvent.append(competition)
 
+# liveEvent=competitionList
 
 # Send email about live competitions
-sendEmail(liveEvent)
+# sendHTMLEmail()
 
 
 # Convert nested objects into a dictionnary for storage system

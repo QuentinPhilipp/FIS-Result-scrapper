@@ -189,7 +189,6 @@ def getCountryBreakdown(country,category):
                 try:
                     results = event["results"]
                     for i in range(1,4):
-                        print(results[str(i)]["nation"])
                         if results[str(i)]["nation"]==country:
                             monthName = monthTranslate[str(event["date"]["month"])]
                             months[str(monthName)]+=1
@@ -199,8 +198,6 @@ def getCountryBreakdown(country,category):
     monthLabel = list(months.keys())
     monthData = list(months.values())
 
-    # print(monthLabel)
-    # print(monthData)
 
     return [monthLabel,monthData]
 
